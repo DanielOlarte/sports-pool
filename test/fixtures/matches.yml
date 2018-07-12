@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  x_id: MyString
+  competition: MyString
+  date: 2018-07-12 13:41:32
+  status: MyString
+  stage: MyString
+  last_updated: 2018-07-12 13:41:32
+
+two:
+  x_id: MyString
+  competition: MyString
+  date: 2018-07-12 13:41:32
+  status: MyString
+  stage: MyString
+  last_updated: 2018-07-12 13:41:32
