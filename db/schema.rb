@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_12_184132) do
+ActiveRecord::Schema.define(version: 2018_07_18_180820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "competitions", force: :cascade do |t|
-    t.string "name", null: false
     t.string "x_id", null: false
+    t.string "name", null: false
     t.datetime "start_date"
     t.datetime "end_date"
     t.string "area"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2018_07_12_184132) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.string "x_id"
-    t.string "competition"
+    t.string "x_id", null: false
+    t.integer "competition_id"
     t.datetime "date"
     t.string "status"
     t.string "stage"
@@ -37,9 +37,22 @@ ActiveRecord::Schema.define(version: 2018_07_12_184132) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "teams", force: :cascade do |t|
+  create_table "squad_members", force: :cascade do |t|
+    t.string "x_id", null: false
+    t.integer "match_id"
     t.string "name"
-    t.string "x_id"
+    t.string "position"
+    t.datetime "birth_date"
+    t.string "country"
+    t.string "nationality"
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "x_id", null: false
+    t.string "name"
     t.string "area"
     t.string "short_name"
     t.string "code"
@@ -47,4 +60,6 @@ ActiveRecord::Schema.define(version: 2018_07_12_184132) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "matches", "competitions"
+  add_foreign_key "squad_members", "matches"
 end
